@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Flower2, HandHeart, Sparkles, Sprout } from "lucide-react"
 import { ageStages, dayJourney, images, nabatApproachSteps, nabatCurriculum, nabatIslamicCurriculum } from "@/lib/site-data"
-import { ArrowLink, Eyebrow, ImageReveal, SectionHeading, SiteButton } from "@/components/site/site-primitives"
+import { ArrowLink, CopyText, Eyebrow, ImageReveal, SectionHeading, SiteButton } from "@/components/site/site-primitives"
 import { CurriculumExplorer } from "@/components/site/curriculum-explorer"
 import { StickyPrinciples } from "@/components/site/sticky-principles"
 
@@ -86,7 +86,7 @@ export function NabatHomePage() {
           <div className="islamic-foundations__list">
             {nabatIslamicCurriculum.slice(0, 6).map((item) => (
               <article className="islamic-foundations__item" key={item.number} data-reveal>
-                <span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p>
+                <span>{item.number}</span><h3>{item.title}</h3><p><CopyText text={item.text} /></p>
               </article>
             ))}
             <ArrowLink href="/nabat/islamic-curriculum">Explore the Islamic curriculum</ArrowLink>

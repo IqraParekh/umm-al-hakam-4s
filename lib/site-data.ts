@@ -37,6 +37,8 @@ export type SitePageData = {
 }
 
 export const images = {
+  ummLogo: "/images/umm-logo.png",
+  nabatLogo: "/images/nabat-logo.png",
   ummLibrary: "/images/umm-library.png",
   ummStudy: "/images/umm-study.png",
   nabatLearning: "/images/nabat-learning.png",

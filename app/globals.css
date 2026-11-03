@@ -51,8 +51,8 @@
   --gutter: clamp(24px, 3.35vw, 48px);
   --section-space: clamp(80px, 9vw, 144px);
   --display-umm: 'Times New Roman', Times, serif;
-  --display-nabat: var(--font-lora), Georgia, serif;
-  --body-nabat: var(--font-lora), Georgia, serif;
+  --display-nabat: var(--font-fredoka), "Nourd", var(--font-lora), sans-serif;
+  --body-nabat: "Nourd", var(--font-lora), Georgia, serif;
   --sans: Arial, Helvetica, sans-serif;
   --label-nabat: var(--font-fredoka), Arial, sans-serif;
 }
@@ -78,6 +78,7 @@ figure, blockquote, p { margin: 0; }
 .section-padding { padding-block: var(--section-space); }
 .eyebrow { color: var(--mauve); font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.19em; line-height: 1.4; text-transform: uppercase; }
 .image-caption { margin-top: 12px; color: var(--muted-ink); font-family: var(--font-lora), Georgia, serif; font-size: 12px; font-style: italic; line-height: 1.5; }
+.arabic-run { direction: rtl; unicode-bidi: isolate; font-family: var(--font-arabic), serif; font-size: 1.08em; }
 .image-reveal { position: relative; overflow: hidden; background: var(--muted-paper); }
 .image-reveal img { object-fit: cover; transition: transform 1s cubic-bezier(.2,.7,.2,1); }
 .image-reveal:hover img { transform: scale(1.025); }
@@ -105,6 +106,19 @@ figure, blockquote, p { margin: 0; }
 .brand-mark__sprout i:nth-child(3) { top: 14px; left: 1px; width: 8px; height: 6px; background: var(--nabat-blue); transform: rotate(12deg); }
 .brand-mark--nabat .brand-mark__word { font-family: var(--label-nabat); font-size: 29px; font-weight: 500; letter-spacing: -0.04em; }
 .brand-mark--nabat .brand-mark__descriptor { margin-top: 0; color: var(--nabat-blue); font-size: 7px; letter-spacing: 0.2em; }
+.brand-mark { display: flex; min-width: 220px; align-items: center; gap: 11px; color: var(--plum); }
+.brand-mark__logo { position: relative; display: block; width: 66px; height: 66px; flex: 0 0 auto; overflow: hidden; background: #f3d3b5; }
+.brand-mark__logo img { width: 100%; height: 100%; object-fit: contain; transition: transform 450ms cubic-bezier(.2,.7,.2,1); }
+.brand-mark__logo--nabat { background: var(--nabat-cream); }
+.brand-mark__logo { transition: transform 320ms cubic-bezier(.2,.7,.2,1); }
+.brand-mark:hover .brand-mark__logo { transform: translateY(-2px) rotate(-1deg); }
+.brand-mark:hover .brand-mark__logo img { transform: scale(1.06); }
+.brand-mark__identity { display: flex; min-width: 0; flex-direction: column; gap: 5px; }
+.brand-mark__word { align-self: auto; font-family: var(--display-umm); font-size: 16px; }
+.brand-mark__descriptor { align-self: auto; margin-top: 0; color: var(--muted-ink); font-size: 7px; letter-spacing: .14em; }
+.brand-mark--nabat { min-width: 218px; color: var(--deep-blue); }
+.brand-mark--nabat .brand-mark__word { color: var(--deep-blue); font-family: var(--font-fredoka), sans-serif; font-size: 22px; font-weight: 500; letter-spacing: -.03em; }
+.brand-mark--nabat .brand-mark__descriptor { max-width: 140px; color: var(--nabat-blue); font-family: var(--font-fredoka), sans-serif; font-size: 7px; letter-spacing: .08em; line-height: 1.35; }
 .desktop-navigation { display: flex; height: 100%; align-items: center; justify-content: center; gap: clamp(12px, 1.5vw, 24px); }
 .desktop-navigation > a, .nav-dropdown > summary { display: inline-flex; align-items: center; gap: 5px; color: #514a4c; font-size: 11px; font-weight: 600; white-space: nowrap; transition: color 180ms ease; cursor: pointer; list-style: none; }
 .desktop-navigation > a::after, .nav-dropdown > summary::after { position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--antique-gold); content: ''; transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
@@ -129,7 +143,7 @@ figure, blockquote, p { margin: 0; }
 .site-shell--nabat .header-cta:hover { border-color: var(--nabat-blue); background: var(--nabat-blue); }
 .mobile-menu-toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; }
 .mobile-navigation { position: fixed; inset: 0; z-index: -1; overflow-y: auto; padding: 112px 0 34px; background: var(--ivory); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 250ms ease, visibility 250ms ease, transform 250ms ease; }
-.mobile-navigation.is-open { z-index: 2; opacity: 1; visibility: visible; transform: translateY(0); }
+.mobile-navigation.is-open { z-index: 90; opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
 .site-shell--nabat .mobile-navigation { background: var(--nabat-paper); }
 .mobile-navigation__inner { display: flex; min-height: calc(100svh - 150px); flex-direction: column; }
 .mobile-navigation__inner > .eyebrow { margin-bottom: 18px; }
@@ -147,6 +161,8 @@ figure, blockquote, p { margin: 0; }
 .site-button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; gap: 18px; padding: 0 22px; border: 1px solid transparent; font-size: 11px; font-weight: 700; letter-spacing: .015em; transition: color 200ms ease, background 200ms ease, border-color 200ms ease, transform 200ms ease; }
 .site-button--primary { color: var(--paper); background: var(--plum); }
 .site-button--primary:hover { background: #742451; }
+.site-shell--nabat .site-button--primary { color: var(--nabat-paper); background: var(--deep-blue); }
+.site-shell--nabat .site-button--primary:hover { background: var(--nabat-blue); }
 .site-button--light { color: var(--deep-blue); background: var(--nabat-paper); }
 .site-button--light:hover { background: var(--butter); }
 .site-button--outline { border-color: currentColor; color: var(--plum); background: transparent; }
@@ -402,10 +418,14 @@ figure, blockquote, p { margin: 0; }
 .site-footer--nabat { color: var(--nabat-paper); background: var(--deep-blue); }
 .site-footer__top { display: grid; grid-template-columns: 1.2fr .85fr 1fr; gap: 8vw; padding-block: 78px 74px; }
 .site-footer__brand-column { max-width: 390px; }
-.footer-brand { display: inline-flex; flex-direction: column; color: var(--ivory); }
-.footer-brand > span:last-child { font-family: var(--display-umm); font-size: clamp(38px, 5vw, 62px); letter-spacing: -.05em; line-height: .95; }
+.footer-brand { display: grid; grid-template-columns: 104px 1fr; align-items: center; gap: 18px; color: var(--ivory); }
+.footer-brand__logo { width: 104px; height: 104px; object-fit: contain; background: #f3d3b5; transition: transform 450ms cubic-bezier(.2,.7,.2,1); }
+.footer-brand--nabat .footer-brand__logo { background: var(--nabat-cream); }
+.footer-brand:hover .footer-brand__logo { transform: translateY(-3px); }
+.footer-brand__identity { display: flex; flex-direction: column; }
+.footer-brand__name { color: var(--ivory); font-family: var(--display-umm); font-size: clamp(36px, 4.6vw, 58px); letter-spacing: -.05em; line-height: .95; }
 .footer-brand__small { margin-bottom: 11px; color: #d2b6c4; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
-.footer-brand--nabat > span:last-child { font-family: var(--label-nabat); font-size: 58px; font-weight: 500; }
+.footer-brand--nabat .footer-brand__name { font-family: var(--font-fredoka), sans-serif; font-size: 52px; font-weight: 500; }
 .site-footer__brand-column > p { max-width: 340px; margin-top: 22px; color: rgba(248, 243, 232, .7); font-size: 12px; line-height: 1.8; }
 .footer-socials { display: flex; flex-direction: column; gap: 8px; margin-top: 28px; }
 .footer-socials > span:first-child { color: var(--ivory); font-size: 10px; font-weight: 700; }
@@ -872,13 +892,13 @@ figure, blockquote, p { margin: 0; }
   html { scroll-padding-top: 72px; }
   .site-header { height: 72px; }
   .site-header.is-compact { height: 64px; }
-  .brand-mark { min-width: 0; grid-template-columns: 34px auto; column-gap: 7px; }
-  .brand-mark__seal { width: 33px; height: 33px; font-size: 14px; }
-  .brand-mark__word { font-size: 15px; }
-  .brand-mark__descriptor { font-size: 7px; }
-  .brand-mark--nabat { grid-template-columns: 27px auto; }
-  .brand-mark--nabat .brand-mark__word { font-size: 25px; }
-  .brand-mark--nabat .brand-mark__descriptor { font-size: 6px; }
+  .brand-mark { min-width: 0; gap: 8px; }
+  .brand-mark__logo { width: 54px; height: 54px; }
+  .brand-mark__word { font-size: 14px; }
+  .brand-mark__descriptor { font-size: 6px; letter-spacing: .11em; }
+  .brand-mark--nabat { min-width: 0; }
+  .brand-mark--nabat .brand-mark__word { font-size: 20px; }
+  .brand-mark--nabat .brand-mark__descriptor { max-width: 118px; font-size: 6px; }
   .mobile-menu-toggle { width: 40px; height: 40px; }
   .mobile-navigation { padding-top: 92px; }
   .mobile-navigation__inner { min-height: calc(100svh - 125px); }
@@ -976,6 +996,10 @@ figure, blockquote, p { margin: 0; }
   .journey-cta__ornament { right: -30px; top: -60px; font-size: 230px; }
   .site-footer__top { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding-block: 55px 42px; }
   .site-footer__brand-column { grid-column: 1 / -1; }
+  .footer-brand { grid-template-columns: 80px 1fr; gap: 13px; }
+  .footer-brand__logo { width: 80px; height: 80px; }
+  .footer-brand__name { font-size: 38px; }
+  .footer-brand--nabat .footer-brand__name { font-size: 42px; }
   .site-footer__links-column nav { grid-template-columns: 1fr 1fr; }
   .site-footer__bottom { flex-wrap: wrap; justify-content: flex-start; padding-block: 16px; }
   .site-footer__bottom > p:last-child { display: none; }

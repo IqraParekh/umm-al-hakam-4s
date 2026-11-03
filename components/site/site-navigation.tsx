@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react"
-import { nabatNavigation, ummNavigation, ummProgrammeLinks, type SiteKey } from "@/lib/site-data"
+import { images, nabatNavigation, ummNavigation, ummProgrammeLinks, type SiteKey } from "@/lib/site-data"
 
 export function SiteNavigation({ site }: { site: SiteKey }) {
   const pathname = usePathname()
@@ -28,40 +29,42 @@ export function SiteNavigation({ site }: { site: SiteKey }) {
   useEffect(() => {
     if (!menuOpen) return
     const previousOverflow = document.body.style.overflow
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false)
+        menuToggleRef.current?.focus()
+      }
+    }
     document.body.style.overflow = "hidden"
+    document.addEventListener("keydown", closeOnEscape)
+    document.querySelector<HTMLAnchorElement>("#mobile-navigation a")?.focus()
     return () => {
       document.body.style.overflow = previousOverflow
+      document.removeEventListener("keydown", closeOnEscape)
     }
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <header
-      className={`site-header${compact ? " is-compact" : ""}`}
-      data-site-header={site}
-      onKeyDown={(event) => {
-        if (event.key === "Escape" && menuOpen) {
-          setMenuOpen(false)
-          menuToggleRef.current?.focus()
-        }
-      }}
-    >
+    <>
+      <header className={`site-header${compact ? " is-compact" : ""}`} data-site-header={site}>
       <div className="site-header__inner container-shell">
         <Link className={`brand-mark${isNabat ? " brand-mark--nabat" : ""}`} href={brandHref} aria-label={isNabat ? "Nabat Learning House home" : "Markaz Umm al-Hakam home"}>
-          {isNabat ? (
-            <>
-              <span className="brand-mark__sprout" aria-hidden="true"><i /><i /><i /></span>
-              <span className="brand-mark__word">nabat</span>
-              <span className="brand-mark__descriptor">LEARNING HOUSE</span>
-            </>
-          ) : (
-            <>
-              <span className="brand-mark__seal" aria-hidden="true">أم الحكم</span>
-              <span className="brand-mark__word">Markaz <strong>Umm al-Hakam</strong></span>
-              <span className="brand-mark__descriptor">ISLAMIC EDUCATION</span>
-            </>
-          )}
+          <span className={`brand-mark__logo${isNabat ? " brand-mark__logo--nabat" : " brand-mark__logo--umm"}`}>
+            <Image
+              alt={isNabat ? "Official Nabat Learning House logo" : "Official Umm al-Hakam Institute logo"}
+              height={72}
+              priority
+              sizes="72px"
+              src={isNabat ? images.nabatLogo : images.ummLogo}
+              width={72}
+            />
+          </span>
+          <span className="brand-mark__identity">
+            <span className="brand-mark__word">{isNabat ? "Nabat" : "Markaz Umm al-Hakam"}</span>
+            <span className="brand-mark__descriptor">{isNabat ? "A PROJECT OF MARKAZ UMM AL-HAKAM" : "ISLAMIC EDUCATION"}</span>
+          </span>
         </Link>
 
         <nav className="desktop-navigation" aria-label={isNabat ? "Nabat main navigation" : "Main navigation"}>
@@ -113,27 +116,28 @@ export function SiteNavigation({ site }: { site: SiteKey }) {
         </button>
       </div>
 
-      <div className={`mobile-navigation${menuOpen ? " is-open" : ""}`} id="mobile-navigation" aria-hidden={!menuOpen}>
-        <div className="mobile-navigation__inner container-shell">
-          <p className="eyebrow">{isNabat ? "A gentle beginning" : "Rooted in revelation"}</p>
-          <nav aria-label={isNabat ? "Nabat mobile navigation" : "Mobile navigation"}>
-            {(isNabat ? nabatNavigation : ummNavigation).map((item, index) => (
-              <Link href={item.href} key={item.href} onClick={closeMenu} tabIndex={menuOpen ? 0 : -1}>
-                <span className="mobile-navigation__number">0{index + 1}</span>
-                <span>{item.label}</span>
-                <ArrowUpRight aria-hidden="true" size={17} />
-              </Link>
-            ))}
-          </nav>
-          {!isNabat && (
-            <div className="mobile-navigation__programmes">
-              <span className="eyebrow">Programmes</span>
-              {ummProgrammeLinks.map((item) => <Link href={item.href} key={item.href} onClick={closeMenu} tabIndex={menuOpen ? 0 : -1}>{item.label}</Link>)}
-            </div>
-          )}
-          <p className="mobile-navigation__footnote">{isNabat ? "A project of Markaz Umm al-Hakam" : "Knowledge · Understanding · Practice · Character"}</p>
-        </div>
-      </div>
     </header>
+    <div className={`mobile-navigation${menuOpen ? " is-open" : ""}`} id="mobile-navigation" aria-hidden={!menuOpen}>
+      <div className="mobile-navigation__inner container-shell">
+        <p className="eyebrow">{isNabat ? "A gentle beginning" : "Rooted in revelation"}</p>
+        <nav aria-label={isNabat ? "Nabat mobile navigation" : "Mobile navigation"}>
+          {(isNabat ? nabatNavigation : ummNavigation).map((item, index) => (
+            <Link href={item.href} key={item.href} onClick={closeMenu} tabIndex={menuOpen ? 0 : -1}>
+              <span className="mobile-navigation__number">0{index + 1}</span>
+              <span>{item.label}</span>
+              <ArrowUpRight aria-hidden="true" size={17} />
+            </Link>
+          ))}
+        </nav>
+        {!isNabat && (
+          <div className="mobile-navigation__programmes">
+            <span className="eyebrow">Programmes</span>
+            {ummProgrammeLinks.map((item) => <Link href={item.href} key={item.href} onClick={closeMenu} tabIndex={menuOpen ? 0 : -1}>{item.label}</Link>)}
+          </div>
+        )}
+        <p className="mobile-navigation__footnote">{isNabat ? "A project of Markaz Umm al-Hakam" : "Knowledge · Understanding · Practice · Character"}</p>
+      </div>
+    </div>
+    </>
   )
 }

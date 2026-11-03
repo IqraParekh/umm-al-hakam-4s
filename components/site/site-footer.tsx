@@ -1,6 +1,8 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight, MoveUpRight } from "lucide-react"
-import { nabatNavigation, ummNavigation, type SiteKey } from "@/lib/site-data"
+import { images, nabatNavigation, ummNavigation, type SiteKey } from "@/lib/site-data"
+import { CopyText } from "@/components/site/site-primitives"
 
 export function SiteFooter({ site }: { site: SiteKey }) {
   const isNabat = site === "nabat"
@@ -11,10 +13,20 @@ export function SiteFooter({ site }: { site: SiteKey }) {
       <div className="site-footer__top container-shell">
         <div className="site-footer__brand-column">
           <Link className={`footer-brand${isNabat ? " footer-brand--nabat" : ""}`} href={isNabat ? "/nabat" : "/"}>
-            <span className="footer-brand__small">{isNabat ? "A GENTLE BEGINNING" : "AN INSTITUTION FOR GENERATIONS"}</span>
-            <span>{isNabat ? "nabat" : "Umm al-Hakam"}</span>
+            <Image
+              alt={isNabat ? "Official Nabat Learning House logo" : "Official Umm al-Hakam Institute logo"}
+              className="footer-brand__logo"
+              height={112}
+              sizes="112px"
+              src={isNabat ? images.nabatLogo : images.ummLogo}
+              width={112}
+            />
+            <span className="footer-brand__identity">
+              <span className="footer-brand__small">{isNabat ? "A GENTLE BEGINNING" : "AN INSTITUTION FOR GENERATIONS"}</span>
+              <span className="footer-brand__name">{isNabat ? "Nabat" : "Umm al-Hakam"}</span>
+            </span>
           </Link>
-          <p>{isNabat ? "A thoughtful early-years learning house for children approximately ages 3–7." : "Rooted in the Qur'an, Sunnah and the understanding of the Sahabah رضي الله عنهم."}</p>
+          <p><CopyText text={isNabat ? "A thoughtful early-years learning house for children approximately ages 3–7." : "Rooted in the Qur'an, Sunnah and the understanding of the Sahabah رضي الله عنهم."} /></p>
           <div className="footer-socials" aria-label="Social channels">
             <span>Social channels</span>
             <span className="footer-socials__pending">[ADD OFFICIAL LINKS]</span>

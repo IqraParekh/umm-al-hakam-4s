@@ -22,7 +22,13 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
 
   const image = route.site === "nabat" ? "/images/nabat-learning.png" : "/images/umm-library.png"
   return {
-    title: { absolute: route.site === "nabat" ? `${route.title} | Nabat Learning House` : `${route.title} | Markaz Umm al-Hakam` },
+    title: {
+      absolute: route.path === "/nabat"
+        ? "Nabat Learning House | Markaz Umm al-Hakam"
+        : route.site === "nabat"
+          ? `${route.title} | Nabat Learning House`
+          : `${route.title} | Markaz Umm al-Hakam`,
+    },
     description: route.description,
     alternates: { canonical: path },
     openGraph: {

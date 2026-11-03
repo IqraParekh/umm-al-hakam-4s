@@ -8,7 +8,7 @@ import {
   type PageSection,
   type SitePageData,
 } from "@/lib/site-data"
-import { ArrowLink, Eyebrow, ImageReveal, PageHero, SectionHeading, SiteButton } from "@/components/site/site-primitives"
+import { ArrowLink, CopyText, Eyebrow, ImageReveal, PageHero, SectionHeading, SiteButton } from "@/components/site/site-primitives"
 import { CurriculumExplorer } from "@/components/site/curriculum-explorer"
 import { EnquiryForm } from "@/components/site/enquiry-form"
 import { ResourceCards } from "@/components/site/resource-cards"
@@ -63,8 +63,8 @@ function EditorialSection({ section, index, site }: { section: PageSection; inde
       <div className="editorial-section__body">
         {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
         <h2>{section.title}</h2>
-        <p>{section.body}</p>
-        {section.points && <ul className="editorial-point-list">{section.points.map((point) => <li key={point}><span aria-hidden="true" />{point}</li>)}</ul>}
+        <p><CopyText text={section.body} /></p>
+        {section.points && <ul className="editorial-point-list">{section.points.map((point) => <li key={point}><span aria-hidden="true" /><CopyText text={point} /></li>)}</ul>}
       </div>
       {layout === "columns" && index === 0 && (
         <figure className="editorial-section__image"><ImageReveal src={site === "nabat" ? images.nabatHands : images.ummStudy} alt={site === "nabat" ? "Children exploring natural learning materials." : "Books and a reading stand in a quiet place of study."} /><figcaption className="image-caption">Knowledge, understood and carried with care.</figcaption></figure>
@@ -94,7 +94,7 @@ function SupervisionPage({ page }: { page: SitePageData }) {
         <div className="container-shell supervision-pillars__grid">
           {pillars.map(({ icon: Icon, title, text }, index) => (
             <article className="supervision-pillar" key={title} data-reveal>
-              <span className="supervision-pillar__number">0{index + 1}</span><Icon aria-hidden="true" size={21} strokeWidth={1.35} /><h3>{title}</h3><p>{text}</p>
+              <span className="supervision-pillar__number">0{index + 1}</span><Icon aria-hidden="true" size={21} strokeWidth={1.35} /><h3>{title}</h3><p><CopyText text={text} /></p>
             </article>
           ))}
           <article className="supervision-pillar supervision-pillar--method" data-reveal><span className="supervision-pillar__number">07</span><span className="supervision-pillar__seal" aria-hidden="true">أ</span><h3>One connected method</h3><p>Academic development and religious care are held in conversation, so teaching remains both thoughtful and rooted.</p></article>
@@ -228,7 +228,7 @@ function IslamicCurriculumPage({ page }: { page: SitePageData }) {
     <main className="content-page content-page--nabat islamic-curriculum-page">
       <PageHero site="nabat" eyebrow={page.eyebrow} title={page.title} lead={page.lead} image={page.image} imageAlt={page.imageAlt} />
       <section className="islamic-curriculum-intro section-padding" data-reveal><div className="container-shell"><Eyebrow>Knowledge with adab</Eyebrow><h2>Introduce the tradition.<br /><em>Make space for meaning.</em></h2><p>Early-years Islamic learning is approached with respect for the sources and the child. Topics are introduced in a way that supports listening, understanding, practice and remembrance.</p></div></section>
-      <section className="islamic-curriculum-map section-padding"><div className="container-shell islamic-curriculum-map__layout"><div className="islamic-curriculum-map__visual" data-reveal><ImageReveal src={images.ummStudy} alt="Books and a reading stand arranged in a quiet, sunlit study." className="islamic-curriculum-map__image" /><div className="islamic-curriculum-map__seal">نَبَات<span>Faith &amp; learning</span></div></div><div className="islamic-curriculum-list">{nabatIslamicCurriculum.map((item) => <article className="islamic-curriculum-item" key={item.number} data-reveal><span>{item.number}</span><div><h3>{item.title}</h3><p>{item.text}</p></div><ArrowUpRight aria-hidden="true" size={16} /></article>)}</div></div></section>
+      <section className="islamic-curriculum-map section-padding"><div className="container-shell islamic-curriculum-map__layout"><div className="islamic-curriculum-map__visual" data-reveal><ImageReveal src={images.ummStudy} alt="Books and a reading stand arranged in a quiet, sunlit study." className="islamic-curriculum-map__image" /><div className="islamic-curriculum-map__seal">نَبَات<span>Faith &amp; learning</span></div></div><div className="islamic-curriculum-list">{nabatIslamicCurriculum.map((item) => <article className="islamic-curriculum-item" key={item.number} data-reveal><span>{item.number}</span><div><h3>{item.title}</h3><p><CopyText text={item.text} /></p></div><ArrowUpRight aria-hidden="true" size={16} /></article>)}</div></div></section>
       <section className="islamic-curriculum-note section-padding"><div className="container-shell islamic-curriculum-note__inner" data-reveal><span className="islamic-curriculum-note__mark">﷽</span><div><Eyebrow>A careful beginning</Eyebrow><h2>Respectful. Rooted.<br /><em>Age-aware.</em></h2><p>The precise texts, selections and sequence used with each age group will be confirmed by the academic and religious supervisors.</p></div><SiteButton href="/nabat/prospectus" variant="light">Read the prospectus</SiteButton></div></section>
     </main>
   )

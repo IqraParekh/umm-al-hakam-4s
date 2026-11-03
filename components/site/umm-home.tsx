@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Compass, Feather, GraduationCap, Leaf, MoveUpRight } from "lucide-react"
 import { images, ummApproachSteps, ummFoundations } from "@/lib/site-data"
-import { SiteButton, ArrowLink, Eyebrow, ImageReveal, SectionHeading } from "@/components/site/site-primitives"
+import { SiteButton, ArrowLink, CopyText, Eyebrow, ImageReveal, SectionHeading } from "@/components/site/site-primitives"
 import { StickyPrinciples } from "@/components/site/sticky-principles"
 import { ResourceCards } from "@/components/site/resource-cards"
 
@@ -13,7 +13,7 @@ export function UmmHomePage() {
         <div className="umm-hero__copy container-shell" data-hero-copy>
           <Eyebrow>Markaz Umm al-Hakam · Islamic Education</Eyebrow>
           <h1 id="umm-hero-title"><span className="hero-line" data-hero-line>Rooted in <em>Revelation.</em></span><span className="hero-line" data-hero-line>Built for <em>Generations.</em></span></h1>
-          <p>An Islamic educational institution grounded in the Qur&apos;an, Sunnah, and the understanding of the Sahabah رضي الله عنهم — cultivating knowledge, understanding, practice and character across generations.</p>
+          <p><CopyText text="An Islamic educational institution grounded in the Qur'an, Sunnah, and the understanding of the Sahabah رضي الله عنهم — cultivating knowledge, understanding, practice and character across generations." /></p>
           <div className="hero-actions">
             <SiteButton href="/programmes">Explore Programmes</SiteButton>
             <Link className="text-link" href="/about">Our Story <ArrowUpRight aria-hidden="true" size={15} /></Link>

@@ -106,13 +106,24 @@ export function PageHero({
       <div className="page-hero__content container-shell" data-hero-copy>
         <Eyebrow>{eyebrow}</Eyebrow>
         <h1>{title}</h1>
-        <p>{lead}</p>
+        <p><CopyText text={lead} /></p>
       </div>
       <div className="page-hero__image" data-hero-image>
         <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 900px) 100vw, 44vw" />
       </div>
       <div className="page-hero__index" aria-hidden="true">{site === "umm" ? "MARKAZ / 01" : "NABAT / 01"}</div>
     </section>
+  )
+}
+
+const arabicPattern = /([\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]+(?:\s+[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]+)*)/gu
+const arabicCharacterPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/
+
+export function CopyText({ text }: { text: string }) {
+  return text.split(arabicPattern).map((segment, index) =>
+    arabicCharacterPattern.test(segment)
+      ? <span className="arabic-run" dir="rtl" lang="ar" key={`${index}-${segment}`}>{segment}</span>
+      : segment,
   )
 }
 
