@@ -46,13 +46,17 @@ export function StickyPrinciples({ site, steps }: { site: SiteKey; steps: Princi
         </aside>
         <div className="sticky-principles__list">
           {steps.map((step, index) => (
-            <article className={`sticky-principles__item${activeIndex === index ? " is-active" : ""}`} data-principle={index} key={step.number}>
+            <button
+              aria-pressed={activeIndex === index}
+              className={`sticky-principles__item${activeIndex === index ? " is-active" : ""}`}
+              data-principle={index}
+              key={step.number}
+              onClick={() => setActiveIndex(index)}
+              type="button"
+            >
               <span className="sticky-principles__item-number">{step.number}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </div>
-            </article>
+              <span className="sticky-principles__item-title">{step.title}</span>
+            </button>
           ))}
         </div>
       </div>

@@ -41,8 +41,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${lora.variable} ${fredoka.variable} ${arabic.variable} antialiased`}>
+    <html lang="en" className={`${lora.variable} ${fredoka.variable} ${arabic.variable}`}>
+      <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
