@@ -13,7 +13,8 @@ import { CurriculumExplorer } from "@/components/site/curriculum-explorer"
 import { EnquiryForm } from "@/components/site/enquiry-form"
 import { ResourceCards } from "@/components/site/resource-cards"
 import { StickyPrinciples } from "@/components/site/sticky-principles"
-import { nabatApproachSteps } from "@/lib/site-data"
+import { nabatApproachSteps, nabatContact } from "@/lib/site-data"
+import { NabatFactsBand } from "@/components/site/nabat-facts-band"
 
 export function SitePage({ page }: { page: SitePageData }) {
   switch (page.kind) {
@@ -185,6 +186,18 @@ function DownloadsPage({ page }: { page: SitePageData }) {
 
 function ContactPage({ page }: { page: SitePageData }) {
   const nabat = page.site === "nabat"
+  const contactItems = nabat
+    ? [
+        { label: "Location", value: nabatContact.address },
+        { label: "Phone / WhatsApp", value: nabatContact.phone, href: nabatContact.whatsappHref },
+        { label: "Email", value: nabatContact.email, href: nabatContact.emailHref },
+      ]
+    : [
+        { label: "Location", value: "[ADD OFFICIAL ADDRESS]" },
+        { label: "Phone / WhatsApp", value: "[ADD OFFICIAL PHONE / WHATSAPP]" },
+        { label: "Email", value: "[ADD OFFICIAL EMAIL]" },
+      ]
+
   return (
     <main className={`content-page content-page--${page.site} contact-page`}>
       <PageHero site={page.site} eyebrow={page.eyebrow} title={page.title} lead={page.lead} image={page.image} imageAlt={page.imageAlt} />
@@ -195,11 +208,7 @@ function ContactPage({ page }: { page: SitePageData }) {
             <h2>Start with<br /><em>a question.</em></h2>
             <p>{nabat ? "Tell us what you would like to know about Nabat, its curriculum or the admissions journey." : "For questions about our institution, supervision or programmes, use the enquiry form."}</p>
             <div className="contact-details__items">
-              {[
-                { label: "Location", value: "[ADD OFFICIAL ADDRESS]" },
-                { label: "Phone / WhatsApp", value: "[ADD OFFICIAL PHONE / WHATSAPP]" },
-                { label: "Email", value: "[ADD OFFICIAL EMAIL]" },
-              ].map((item, index) => <div className="contact-detail" key={item.label}><span>0{index + 1}</span><div><small>{item.label}</small><p>{item.value}</p></div></div>)}
+              {contactItems.map((item, index) => <div className="contact-detail" key={item.label}><span>0{index + 1}</span><div><small>{item.label}</small>{item.href ? <a className="contact-detail__value" href={item.href} rel={item.label === "Phone / WhatsApp" ? "noreferrer" : undefined} target={item.label === "Phone / WhatsApp" ? "_blank" : undefined}>{item.value}</a> : <p>{item.value}</p>}</div></div>)}
             </div>
             <div className="contact-social-note"><span>Social channels</span><strong>[ADD OFFICIAL SOCIAL LINKS]</strong></div>
           </div>
@@ -259,6 +268,7 @@ function ProspectusPage({ page }: { page: SitePageData }) {
   return (
     <main className="content-page content-page--nabat prospectus-page">
       <PageHero site="nabat" eyebrow={page.eyebrow} title={page.title} lead={page.lead} image={page.image} imageAlt={page.imageAlt} />
+      <NabatFactsBand />
       <section className="prospectus-content section-padding"><div className="container-shell prospectus-content__heading" data-reveal><Eyebrow>Inside the prospectus</Eyebrow><h2>A clear picture<br /><em>of the journey.</em></h2><p>Explore Nabat’s purpose, learning areas and the principles behind its early-years experience.</p></div><div className="container-shell prospectus-chapters">{page.sections.map((section, index) => <article className="prospectus-chapter" key={section.title} data-reveal><span className="prospectus-chapter__number">0{index + 1}</span><div><Eyebrow>{section.eyebrow}</Eyebrow><h3>{section.title}</h3><p>{section.body}</p></div><ArrowUpRight aria-hidden="true" size={17} /></article>)}</div></section>
       <section className="prospectus-contents section-padding"><div className="container-shell prospectus-contents__grid"><div className="prospectus-contents__visual" data-reveal><ImageReveal src={images.nabatHands} alt="Young children exploring natural materials on a light table." className="prospectus-contents__image" /><span className="prospectus-contents__sticker">Ages<br />3—7</span></div><div className="prospectus-contents__copy" data-reveal><Eyebrow>Digital resource</Eyebrow><h2>See the Nabat journey<br /><em>in full.</em></h2><p>The approved PDF prospectus has not yet been supplied. Until then, this page offers a digital overview of the curriculum, approach and admissions journey.</p><div className="prospectus-contents__actions"><button className="site-button site-button--outline prospectus-download-button" disabled title="The official prospectus PDF has not been supplied yet." type="button"><span>Download Prospectus</span><Download aria-hidden="true" size={16} /></button><span className="prospectus-contents__pending">Official PDF to be supplied</span><Link className="prospectus-contents__admissions-link" href="/nabat/admissions">Start an enquiry <ArrowUpRight aria-hidden="true" size={15} /></Link></div></div></div></section>
     </main>
@@ -276,8 +286,9 @@ function AdmissionsPage({ page }: { page: SitePageData }) {
   return (
     <main className="content-page content-page--nabat admissions-page">
       <PageHero site="nabat" eyebrow={page.eyebrow} title={page.title} lead={page.lead} image={page.image} imageAlt={page.imageAlt} />
+      <NabatFactsBand />
       <section className="admissions-journey section-padding"><div className="container-shell admissions-journey__heading" data-reveal><Eyebrow>How it begins</Eyebrow><h2>A simple first step.<br /><em>A considered journey.</em></h2><p>The sequence below is an enquiry overview, not a confirmed admission policy. Requirements, dates and decisions will be shared by the institution.</p></div><div className="container-shell admissions-steps">{steps.map((step) => <article className="admissions-step" key={step.number} data-reveal><span>{step.number}</span><div><h3>{step.title}</h3><p>{step.text}</p></div><ArrowRight aria-hidden="true" size={18} /></article>)}</div></section>
-      <section className="admissions-form-section section-padding"><div className="container-shell admissions-form-section__grid"><div className="admissions-form-section__intro" data-reveal><Eyebrow>Start an enquiry</Eyebrow><h2>Tell us a little<br /><em>about your family.</em></h2><p>Sharing this information helps prepare a first conversation. Live form delivery is not yet connected.</p><span className="admissions-form-section__note">Ages approximately 3–7<br />Official eligibility: [ADD OFFICIAL INFORMATION]</span></div><div className="admissions-form-section__form" data-reveal><EnquiryForm mode="admissions" /></div></div></section>
+      <section className="admissions-form-section section-padding"><div className="container-shell admissions-form-section__grid"><div className="admissions-form-section__intro" data-reveal><Eyebrow>Start an enquiry</Eyebrow><h2>Tell us a little<br /><em>about your family.</em></h2><p>Sharing this information helps prepare a first conversation. Live form delivery is not yet connected.</p><span className="admissions-form-section__note">Ages 3–7 · Starting December 2026, inshaAllah<br />Entry details: [ADD OFFICIAL INFORMATION]</span></div><div className="admissions-form-section__form" data-reveal><EnquiryForm mode="admissions" /></div></div></section>
       <section className="admissions-bottom section-padding"><div className="container-shell admissions-bottom__inner" data-reveal><span>Have a question first?</span><Link href="/nabat/contact">Contact Nabat <MoveUpRight aria-hidden="true" size={15} /></Link></div></section>
     </main>
   )

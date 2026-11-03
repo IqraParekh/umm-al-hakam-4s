@@ -45,6 +45,22 @@ export const images = {
   nabatHands: "/images/nabat-hands.png",
 } as const
 
+export const nabatFacts = [
+  { label: "Ages", value: "3–7" },
+  { label: "Days", value: "Mon–Fri" },
+  { label: "Timing", value: "9:00 am to 1:00 pm" },
+  { label: "Starting", value: "December 2026", note: "inshaAllah" },
+]
+
+export const nabatContact = {
+  address: "PECHS Block 4, Karachi",
+  phone: "+92 325 2793144",
+  whatsappHref: "https://wa.me/923252793144",
+  email: "markazummalhakam@gmail.com",
+  emailHref: "mailto:markazummalhakam@gmail.com",
+  prospectus: "Prospectus 2026–27",
+}
+
 export const ummNavigation = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
@@ -92,7 +108,7 @@ export const ummApproachSteps = [
 ]
 
 export const nabatApproachSteps = [
-  { number: "01", title: "Sound sources", text: "Children meet the Qur'an, Prophetic teachings and carefully chosen learning materials in a thoughtful sequence." },
+  { number: "01", title: "Sound sources", text: "Children meet the Quran, Prophetic teachings and carefully chosen learning materials in a thoughtful sequence." },
   { number: "02", title: "Understanding", text: "New ideas are made concrete through conversation, demonstration, stories and purposeful repetition." },
   { number: "03", title: "Practice", text: "Children revisit ideas through guided activity, reflection and small, meaningful routines." },
   { number: "04", title: "Gentle discipline", text: "Warm relationships, predictable rhythms and clear boundaries support a calm learning environment." },
@@ -146,7 +162,7 @@ export const nabatCurriculum = [
 ]
 
 export const nabatIslamicCurriculum = [
-  { number: "01", title: "Qur'an", text: "A respectful, age-conscious introduction to the words of Allah through listening, recitation and guided learning." },
+  { number: "01", title: "Quran", text: "A respectful, age-conscious introduction to the words of Allah through listening, recitation and guided learning." },
   { number: "02", title: "Hadith", text: "Selected Prophetic teachings are introduced with care, helping children notice good manners and meaningful actions." },
   { number: "03", title: "People of knowledge", text: "Children encounter the Sahabah رضي الله عنهم, the Tabi'in, the Four Imams, Imam al-Bukhari, Ibn Taymiyyah, Ibn al-Qayyim and Ibn Kathir." },
   { number: "04", title: "Mutun", text: "Short foundational texts are approached with suitable explanation, repetition and attention to understanding." },
@@ -167,7 +183,7 @@ export const ageStages = [
 export const dayJourney = [
   { time: "Arrive", title: "A warm welcome", text: "Settle in, greet one another and become ready for the day." },
   { time: "Learn", title: "Focused learning", text: "Meet a new idea through conversation, explanation and guided practice." },
-  { time: "Qur'an", title: "Listen and recite", text: "Make space for Qur'anic learning in a calm, respectful rhythm." },
+  { time: "Quran", title: "Listen and recite", text: "Make space for Quran learning in a calm, respectful rhythm." },
   { time: "Explore", title: "Academic discovery", text: "Work with language, number, science or geography through age-appropriate materials." },
   { time: "Make", title: "Hands-on activity", text: "Use materials, movement and creativity to explore an idea in another way." },
   { time: "Reflect", title: "Close with care", text: "Gather, remember what was learned and prepare to carry it home." },
@@ -284,7 +300,7 @@ export const sitePages: SitePageData[] = [
   },
   {
     path: "/nabat/islamic-curriculum", site: "nabat", kind: "islamic-curriculum", eyebrow: "Faith & foundations", title: "Islamic Curriculum",
-    description: "Explore the Islamic learning foundations at Nabat: Qur'an, Hadith, people of knowledge, mutun, duas, adab, Islamic history and Seerah.",
+    description: "Explore the Islamic learning foundations at Nabat: Quran, Hadith, people of knowledge, mutun, duas, adab, Islamic history and Seerah.",
     lead: "Islamic learning is approached with respect, care and age-aware explanation—making room for listening, understanding, practice and love of what is learned.",
     image: images.ummStudy, imageAlt: "A book stand and carefully arranged study materials in a calm, sunlit reading space.",
     sections: [],
@@ -325,7 +341,7 @@ export const sitePages: SitePageData[] = [
   {
     path: "/nabat/contact", site: "nabat", kind: "contact", eyebrow: "We would love to hear from you", title: "Contact Nabat",
     description: "Contact Nabat Learning House with a question about the early-years project, curriculum or admissions.",
-    lead: "Tell us what you would like to know. Official location, phone and email details will be added when confirmed by Markaz Umm al-Hakam.",
+    lead: "We would be honoured to be part of your child’s journey. Find us at PECHS Block 4, Karachi, or message the team on WhatsApp.",
     image: images.nabatLearning, imageAlt: "A calm classroom prepared for children to explore and learn.",
     sections: [],
   },

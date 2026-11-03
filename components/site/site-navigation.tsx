@@ -54,17 +54,23 @@ export function SiteNavigation({ site }: { site: SiteKey }) {
           <span className={`brand-mark__logo${isNabat ? " brand-mark__logo--nabat" : " brand-mark__logo--umm"}`}>
             <Image
               alt={isNabat ? "Official Nabat Learning House logo" : "Official Umm al-Hakam Institute logo"}
-              height={72}
+              height={isNabat ? 96 : 72}
               priority
-              sizes="72px"
+              sizes={isNabat ? "96px" : "72px"}
               src={isNabat ? images.nabatLogo : images.ummLogo}
-              width={72}
+              width={isNabat ? 96 : 72}
             />
           </span>
-          <span className="brand-mark__identity">
-            <span className="brand-mark__word">{isNabat ? "Nabat" : "Markaz Umm al-Hakam"}</span>
-            <span className="brand-mark__descriptor">{isNabat ? "A PROJECT OF MARKAZ UMM AL-HAKAM" : "ISLAMIC EDUCATION"}</span>
-          </span>
+          {isNabat ? (
+            <span className="brand-mark__identity">
+              <span className="brand-mark__parent-line">A Project of Markaz Umm al-Hakam</span>
+            </span>
+          ) : (
+            <span className="brand-mark__identity">
+              <span className="brand-mark__word">Markaz Umm al-Hakam</span>
+              <span className="brand-mark__descriptor">ISLAMIC EDUCATION</span>
+            </span>
+          )}
         </Link>
 
         <nav className="desktop-navigation" aria-label={isNabat ? "Nabat main navigation" : "Main navigation"}>

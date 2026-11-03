@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight, MoveUpRight } from "lucide-react"
-import { images, nabatNavigation, ummNavigation, type SiteKey } from "@/lib/site-data"
+import { images, nabatContact, nabatNavigation, ummNavigation, type SiteKey } from "@/lib/site-data"
 import { CopyText } from "@/components/site/site-primitives"
 
 export function SiteFooter({ site }: { site: SiteKey }) {
@@ -21,12 +21,16 @@ export function SiteFooter({ site }: { site: SiteKey }) {
               src={isNabat ? images.nabatLogo : images.ummLogo}
               width={112}
             />
-            <span className="footer-brand__identity">
-              <span className="footer-brand__small">{isNabat ? "A GENTLE BEGINNING" : "AN INSTITUTION FOR GENERATIONS"}</span>
-              <span className="footer-brand__name">{isNabat ? "Nabat" : "Umm al-Hakam"}</span>
-            </span>
+            {isNabat ? (
+              <span className="footer-brand__parent-line">A Project of Markaz Umm al-Hakam</span>
+            ) : (
+              <span className="footer-brand__identity">
+                <span className="footer-brand__small">AN INSTITUTION FOR GENERATIONS</span>
+                <span className="footer-brand__name">Umm al-Hakam</span>
+              </span>
+            )}
           </Link>
-          <p><CopyText text={isNabat ? "A thoughtful early-years learning house for children approximately ages 3–7." : "Rooted in the Qur'an, Sunnah and the understanding of the Sahabah رضي الله عنهم."} /></p>
+          <p><CopyText text={isNabat ? "Every child at Nabat is an amanah." : "Rooted in the Qur'an, Sunnah and the understanding of the Sahabah رضي الله عنهم."} /></p>
           <div className="footer-socials" aria-label="Social channels">
             <span>Social channels</span>
             <span className="footer-socials__pending">[ADD OFFICIAL LINKS]</span>
@@ -44,9 +48,19 @@ export function SiteFooter({ site }: { site: SiteKey }) {
         </div>
         <div className="site-footer__contact-column">
           <p className="eyebrow">Get in touch</p>
-          <p className="footer-placeholder">[ADD OFFICIAL ADDRESS]</p>
-          <p className="footer-placeholder">[ADD OFFICIAL PHONE / WHATSAPP]</p>
-          <p className="footer-placeholder">[ADD OFFICIAL EMAIL]</p>
+          {isNabat ? (
+            <>
+              <p className="footer-placeholder">{nabatContact.prospectus.toUpperCase()} · {nabatContact.address.toUpperCase()}</p>
+              <a className="footer-placeholder" href={nabatContact.whatsappHref} rel="noreferrer" target="_blank">{nabatContact.phone} · WhatsApp</a>
+              <a className="footer-placeholder" href={nabatContact.emailHref}>{nabatContact.email}</a>
+            </>
+          ) : (
+            <>
+              <p className="footer-placeholder">[ADD OFFICIAL ADDRESS]</p>
+              <p className="footer-placeholder">[ADD OFFICIAL PHONE / WHATSAPP]</p>
+              <p className="footer-placeholder">[ADD OFFICIAL EMAIL]</p>
+            </>
+          )}
           <Link className="footer-contact-link" href={isNabat ? "/nabat/contact" : "/contact"}>
             Start a conversation <MoveUpRight aria-hidden="true" size={15} />
           </Link>

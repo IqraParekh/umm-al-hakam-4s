@@ -48,11 +48,18 @@
   --nabat-cream: #faf4e6;
   --nabat-ink: #232b3b;
   --nabat-line: rgba(63, 80, 120, 0.18);
+  --nabat-soft-blue: #8fa8b8;
+  --nabat-sage: #a8b89a;
+  --nabat-soft-butter: #f3e3a0;
+  --nabat-blush: #e8c7c1;
+  --nabat-warm-cream: #fbf6ec;
+  --nabat-mid-blue: #4f6289;
   --gutter: clamp(24px, 3.35vw, 48px);
+  --grid-gutter: clamp(16px, 1.67vw, 24px);
   --section-space: clamp(80px, 9vw, 144px);
   --display-umm: 'Times New Roman', Times, serif;
-  --display-nabat: var(--font-fredoka), "Nourd", var(--font-lora), sans-serif;
-  --body-nabat: "Nourd", var(--font-lora), Georgia, serif;
+  --display-nabat: var(--font-lora), Georgia, serif;
+  --body-nabat: var(--font-lora), Georgia, serif;
   --sans: Arial, Helvetica, sans-serif;
   --label-nabat: var(--font-fredoka), Arial, sans-serif;
 }
@@ -85,12 +92,13 @@ figure, blockquote, p { margin: 0; }
 .decorative-rule { display: block; width: 112px; height: 1px; margin-top: 28px; background: var(--antique-gold); }
 
 .site-shell { overflow: clip; background: var(--ivory); }
-.site-shell--nabat { background: var(--nabat-paper); color: var(--nabat-ink); font-family: var(--body-nabat); }
-.site-shell--nabat .eyebrow { font-family: var(--label-nabat); letter-spacing: .1em; }
+.site-shell--nabat { background: var(--nabat-warm-cream); color: var(--nabat-ink); font-family: var(--body-nabat); }
+.site-shell--nabat .eyebrow { font-family: var(--label-nabat); font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: none; }
 .motion-frame { min-height: 100vh; }
 .site-header { position: sticky; top: 0; z-index: 100; height: 90px; background: rgba(248, 243, 232, 0.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(91, 19, 63, 0.08); transition: height 240ms ease, background 240ms ease, box-shadow 240ms ease; }
 .site-header.is-compact { height: 72px; box-shadow: 0 8px 24px rgba(45, 25, 36, 0.055); }
-.site-shell--nabat .site-header { background: rgba(255, 252, 245, 0.94); border-bottom-color: rgba(63, 80, 120, 0.1); }
+.site-shell--nabat .site-header { height: 116px; background: rgba(255, 252, 245, 0.94); border-bottom-color: rgba(63, 80, 120, 0.1); }
+.site-shell--nabat .site-header.is-compact { height: 112px; }
 .site-header__inner { display: flex; height: 100%; align-items: center; justify-content: space-between; gap: 24px; }
 .brand-mark { display: grid; grid-template-columns: 40px auto; grid-template-rows: auto auto; align-items: center; column-gap: 9px; min-width: 230px; color: var(--plum); }
 .brand-mark__seal { display: grid; grid-row: 1 / span 2; width: 39px; height: 39px; place-items: center; border: 1px solid var(--antique-gold); border-radius: 50%; color: var(--plum); font-family: var(--font-arabic), serif; font-size: 16px; }
@@ -116,9 +124,10 @@ figure, blockquote, p { margin: 0; }
 .brand-mark__identity { display: flex; min-width: 0; flex-direction: column; gap: 5px; }
 .brand-mark__word { align-self: auto; font-family: var(--display-umm); font-size: 16px; }
 .brand-mark__descriptor { align-self: auto; margin-top: 0; color: var(--muted-ink); font-size: 7px; letter-spacing: .14em; }
-.brand-mark--nabat { min-width: 218px; color: var(--deep-blue); }
-.brand-mark--nabat .brand-mark__word { color: var(--deep-blue); font-family: var(--font-fredoka), sans-serif; font-size: 22px; font-weight: 500; letter-spacing: -.03em; }
-.brand-mark--nabat .brand-mark__descriptor { max-width: 140px; color: var(--nabat-blue); font-family: var(--font-fredoka), sans-serif; font-size: 7px; letter-spacing: .08em; line-height: 1.35; }
+.brand-mark--nabat { min-width: 192px; flex-direction: column; align-items: flex-start; gap: 0; color: var(--deep-blue); }
+.brand-mark--nabat .brand-mark__logo { width: 96px; height: 96px; background: var(--nabat-cream); }
+.brand-mark--nabat .brand-mark__identity { margin-top: 2px; }
+.brand-mark__parent-line { color: var(--deep-blue); font-family: var(--font-lora), Georgia, serif; font-size: 8px; font-weight: 600; letter-spacing: .08em; line-height: 1.3; white-space: nowrap; }
 .desktop-navigation { display: flex; height: 100%; align-items: center; justify-content: center; gap: clamp(12px, 1.5vw, 24px); }
 .desktop-navigation > a, .nav-dropdown > summary { display: inline-flex; align-items: center; gap: 5px; color: #514a4c; font-size: 11px; font-weight: 600; white-space: nowrap; transition: color 180ms ease; cursor: pointer; list-style: none; }
 .desktop-navigation > a::after, .nav-dropdown > summary::after { position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--antique-gold); content: ''; transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
@@ -195,7 +204,7 @@ figure, blockquote, p { margin: 0; }
 .scroll-cue svg { color: var(--antique-gold); animation: cue-bob 1.6s ease-in-out infinite; }
 @keyframes cue-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
 
-.nabat-hero { position: relative; display: grid; min-height: min(760px, calc(100svh - 90px)); grid-template-columns: 1.04fr .96fr; align-items: center; padding: 42px var(--gutter) 62px; overflow: hidden; color: var(--deep-blue); background: var(--nabat-cream); }
+.nabat-hero { position: relative; display: grid; min-height: min(760px, calc(100svh - 90px)); grid-template-columns: 1.04fr .96fr; align-items: center; gap: var(--grid-gutter); padding: 42px var(--gutter) 62px; overflow: hidden; color: var(--deep-blue); background: var(--nabat-warm-cream); }
 .nabat-hero__copy { position: relative; z-index: 2; width: 100%; max-width: 690px; padding: 53px 2vw 48px 0; }
 .nabat-hero__copy .eyebrow { margin-bottom: 22px; color: var(--nabat-blue); }
 .nabat-hero__sprout { position: absolute; top: 1px; right: 12%; width: 47px; height: 45px; }
@@ -204,34 +213,34 @@ figure, blockquote, p { margin: 0; }
 .nabat-hero__sprout i:nth-child(1) { top: 12px; left: 3px; transform: rotate(8deg); }
 .nabat-hero__sprout i:nth-child(2) { top: 5px; right: 1px; transform: rotate(75deg); }
 .nabat-hero__sprout i:nth-child(3) { top: 25px; left: 4px; width: 12px; height: 8px; background: #9aaa82; transform: rotate(12deg); }
-.nabat-hero h1 { margin: 0; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(59px, 7vw, 98px); font-weight: 400; letter-spacing: -.06em; line-height: .9; }
+.nabat-hero h1 { margin: 0; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(48px, 5.5vw, 76px); font-weight: 400; letter-spacing: -.04em; line-height: .98; }
 .nabat-hero h1 em { color: var(--nabat-blue); font-weight: 400; }
 .nabat-hero__copy > p { max-width: 440px; margin-top: 24px; color: #596277; font-family: var(--body-nabat); font-size: 15px; line-height: 1.65; }
 .nabat-hero .hero-actions { margin-top: 27px; }
 .site-shell--nabat .text-link { color: var(--deep-blue); border-color: var(--nabat-blue); }
-.nabat-hero__stamp { position: absolute; right: 7%; bottom: 5px; display: flex; width: 104px; height: 104px; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(63,80,120,.35); border-radius: 50%; color: var(--deep-blue); background: var(--butter); font-family: var(--display-nabat); font-size: 13px; font-style: italic; line-height: 1.05; text-align: center; transform: rotate(9deg); }
-.nabat-hero__visual { position: relative; align-self: stretch; min-height: 550px; margin: 24px 0 22px; overflow: hidden; border-radius: 48% 48% 4px 4px; background: var(--mist); }
+.nabat-hero__stamp { position: absolute; right: 7%; bottom: 5px; display: flex; width: 104px; height: 104px; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(63,80,120,.35); border-radius: 50%; color: var(--deep-blue); background: var(--nabat-soft-butter); font-family: var(--font-fredoka), sans-serif; font-size: 13px; font-style: normal; line-height: 1.05; text-align: center; transform: none; }
+.nabat-hero__visual { position: relative; align-self: stretch; min-height: 550px; margin: 24px 0 22px; overflow: hidden; border-radius: 28px; background: var(--mist); }
 .nabat-hero__visual img { object-fit: cover; object-position: 51% center; }
 .nabat-hero__visual-wash { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(35,43,59,.32)); pointer-events: none; }
-.nabat-hero__image-note { position: absolute; right: 19px; bottom: 19px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; color: var(--deep-blue); background: var(--nabat-paper); font-family: var(--label-nabat); font-size: 10px; letter-spacing: .02em; }
+.nabat-hero__image-note { position: absolute; right: 19px; bottom: 19px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; color: var(--deep-blue); background: var(--nabat-paper); font-family: var(--label-nabat); font-size: 13px; letter-spacing: .02em; border-radius: var(--nabat-chip-radius); }
 .nabat-hero__image-note svg { color: #81916c; }
 .nabat-hero__sun { position: absolute; top: 16%; right: 8%; width: 56px; height: 56px; border: 1px solid rgba(247,230,181,.85); border-radius: 50%; background: rgba(247,230,181,.72); }
 .scroll-cue--nabat { color: var(--nabat-blue); }
 .scroll-cue--nabat svg { color: var(--nabat-blue); }
 
-.nabat-intro { background: var(--nabat-paper); }
-.nabat-intro__grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 35px clamp(45px, 9vw, 130px); align-items: center; }
+.nabat-intro { background: var(--nabat-warm-cream); }
+.nabat-intro__grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 35px var(--grid-gutter); align-items: center; }
 .nabat-intro__copy { position: relative; z-index: 1; }
 .nabat-intro__copy .eyebrow { color: var(--nabat-blue); }
 .nabat-intro__copy h2 { margin-top: 17px; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(42px, 5.6vw, 76px); font-weight: 400; letter-spacing: -.05em; line-height: .97; }
 .nabat-intro__copy h2 em { color: var(--nabat-blue); }
 .nabat-intro__copy > p { max-width: 420px; margin: 20px 0 22px; color: #586277; font-family: var(--body-nabat); font-size: 13px; line-height: 1.8; }
 .nabat-intro__visual { position: relative; }
-.nabat-intro__image { aspect-ratio: 1.03; border-radius: 46% 46% 3px 3px; }
+.nabat-intro__image { aspect-ratio: 1.03; border-radius: 28px; }
 .nabat-intro__shape { position: absolute; z-index: -1; right: -30px; bottom: 20px; width: 85%; height: 80%; border-radius: 46% 46% 3px 3px; background: var(--mist); transform: rotate(5deg); }
 .nabat-intro__margin-note { position: absolute; right: -31px; top: 8%; color: var(--nabat-blue); font-family: var(--label-nabat); font-size: 9px; letter-spacing: .08em; writing-mode: vertical-rl; }
 
-.nabat-philosophy { color: var(--deep-blue); background: var(--butter); }
+.nabat-philosophy { color: var(--deep-blue); background: var(--nabat-soft-butter); }
 .nabat-philosophy__heading { display: grid; grid-template-columns: .62fr 1.38fr; gap: 25px; align-items: start; }
 .nabat-philosophy__heading .eyebrow { padding-top: 15px; color: var(--nabat-blue); }
 .nabat-philosophy__heading h2 { font-family: var(--display-nabat); font-size: clamp(46px, 6vw, 82px); font-weight: 400; letter-spacing: -.05em; line-height: .92; }
@@ -243,13 +252,71 @@ figure, blockquote, p { margin: 0; }
 .nabat-philosophy__step h3 { color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(22px, 2.8vw, 37px); font-weight: 400; letter-spacing: -.035em; }
 .nabat-philosophy__arrow { position: absolute; top: 18px; right: 22px; color: var(--nabat-blue); }
 
-.nabat-curriculum { background: var(--nabat-cream); }
-.nabat-curriculum__header { display: grid; grid-template-columns: 1fr .75fr; gap: 42px; align-items: end; margin-bottom: 43px; }
+.nabat-curriculum { background: var(--nabat-warm-cream); }
+.nabat-curriculum__header { display: grid; grid-template-columns: 1fr .75fr; gap: var(--grid-gutter); align-items: end; margin-bottom: 43px; }
 .nabat-curriculum__header h2 { margin-top: 17px; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(44px, 5.8vw, 77px); font-weight: 400; letter-spacing: -.05em; line-height: .94; }
 .nabat-curriculum__header h2 em { color: var(--nabat-blue); }
 .nabat-curriculum__header > p { max-width: 400px; justify-self: end; color: #586277; font-family: var(--body-nabat); font-size: 12px; line-height: 1.8; }
 .nabat-curriculum__foot { margin-top: 22px; }
+.site-shell--nabat {
+  --nabat-card-radius: 20px;
+  --nabat-chip-radius: 14px;
+  --nabat-photo-radius: 28px;
+  background: var(--nabat-warm-cream);
+}
+.site-shell--nabat .eyebrow { font-size: 13px; }
+.site-shell--nabat .site-button,
+.site-shell--nabat .header-cta { border-radius: 999px; }
+.site-shell--nabat .brand-mark__logo,
+.site-shell--nabat .brand-mark__logo img,
+.site-shell--nabat .footer-brand__logo { transition: none; }
+.site-shell--nabat .brand-mark:hover .brand-mark__logo,
+.site-shell--nabat .brand-mark:hover .brand-mark__logo img,
+.site-shell--nabat .footer-brand:hover .footer-brand__logo { transform: none; }
+.nabat-facts-band { padding: 0 var(--gutter); color: var(--nabat-paper); background: var(--deep-blue); }
+.nabat-facts-band__inner { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: hidden; border-radius: var(--nabat-card-radius); }
+.nabat-fact { display: flex; min-height: 116px; flex-direction: column; justify-content: center; gap: 7px; padding: 20px 24px; background: var(--deep-blue); }
+.nabat-fact:nth-child(even) { background: var(--nabat-mid-blue); }
+.nabat-fact dt { color: var(--sprout-gold); font-family: var(--label-nabat); font-size: 13px; font-weight: 500; }
+.nabat-fact dd { color: var(--nabat-paper); font-family: var(--body-nabat); font-size: 18px; line-height: 1.2; }
+.nabat-fact > span { color: var(--sprout-gold); font-family: var(--body-nabat); font-size: 12px; font-style: italic; }
+.site-shell--nabat .nabat-hero { background: var(--nabat-warm-cream); }
+.nabat-hero__visual,
+.nabat-intro__image,
+.nabat-intro__shape,
+.nabat-transition__image,
+.islamic-foundations__image,
+.curriculum-materials__photo,
+.islamic-curriculum-map__image,
+.prospectus-contents__image,
+.page-hero--nabat .page-hero__image { border-radius: var(--nabat-photo-radius); }
+.nabat-intro { background: var(--nabat-warm-cream); }
+.nabat-intro__shape { transform: none; }
+.nabat-philosophy,
+.age-journey,
+.nabat-admissions-cta { background: var(--nabat-soft-butter); }
+.day-journey { background: var(--nabat-blush); }
+.nabat-hero__image-note,
+.nabat-hero__stamp,
+.age-journey__dot,
+.day-journey__dot,
+.nabat-admissions-cta__flower { border-radius: var(--nabat-chip-radius); }
+.nabat-hero__stamp { transform: none; }
+.site-shell--nabat .contact-form-panel,
+.site-shell--nabat .admissions-form-section__form,
+.curriculum-explorer,
+.resource-card--blue { border-radius: var(--nabat-card-radius); overflow: hidden; }
 .site-shell--nabat .curriculum-explorer { border-color: var(--nabat-line); }
+.site-shell--nabat .curriculum-explorer__tab { font-size: 13px; }
+.site-shell--nabat .curriculum-explorer__panel { padding: clamp(28px, 4vw, 56px); }
+.site-shell--nabat .curriculum-explorer__panel h3 { font-family: var(--display-nabat); }
+.site-shell--nabat .nabat-hero h1 { font-family: var(--display-nabat); font-size: clamp(48px, 5.2vw, 72px); letter-spacing: -.04em; line-height: .98; }
+.site-shell--nabat .nabat-hero__copy > p { font-family: var(--body-nabat); font-size: 18px; line-height: 1.6; }
+.site-shell--nabat .nabat-hero__stamp { font-family: var(--font-fredoka), sans-serif; border-radius: 50%; }
+.site-shell--nabat .nabat-admissions-cta__action .site-button { border-radius: 999px; }
+.site-shell--nabat .footer-brand--nabat .footer-brand__parent-line { color: var(--sprout-gold); font-family: var(--font-lora), Georgia, serif; font-size: 12px; font-weight: 600; letter-spacing: .08em; line-height: 1.5; }
+.site-shell--nabat .footer-brand--nabat .footer-brand__logo { width: 112px; height: 112px; }
+
 
 .umm-intro { background: var(--paper); }
 .umm-intro__grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; column-gap: clamp(40px, 8vw, 130px); row-gap: 38px; }
@@ -301,7 +368,7 @@ figure, blockquote, p { margin: 0; }
 .nabat-feature__copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(34px, 5.2vw, 76px); overflow: hidden; color: var(--deep-blue); }
 .nabat-feature__overline { display: inline-flex; align-items: center; gap: 8px; color: var(--deep-blue); font-family: var(--font-fredoka), sans-serif; font-size: 11px; letter-spacing: .04em; }
 .nabat-feature__overline svg { color: #8f9d73; }
-.nabat-feature__copy h3 { position: relative; z-index: 1; margin: 24px 0 18px; font-family: var(--font-fredoka), sans-serif; font-size: clamp(45px, 6vw, 76px); font-weight: 500; letter-spacing: -.04em; line-height: .84; }
+.nabat-feature__copy h3 { position: relative; z-index: 1; margin: 24px 0 18px; font-family: var(--display-nabat); font-size: clamp(45px, 6vw, 76px); font-weight: 600; letter-spacing: -.04em; line-height: .94; }
 .nabat-feature__copy h3 em { font-family: var(--font-lora), Georgia, serif; font-size: .53em; font-weight: 400; letter-spacing: -.04em; }
 .nabat-feature__copy > p { position: relative; z-index: 1; max-width: 380px; margin-bottom: 27px; color: #495674; font-size: 13px; line-height: 1.8; }
 .nabat-feature__copy .site-button { position: relative; z-index: 1; }
@@ -322,7 +389,7 @@ figure, blockquote, p { margin: 0; }
 .nabat-transition__shape { position: absolute; top: -38%; right: -8%; width: 58vw; aspect-ratio: 1; border: 1px solid rgba(247, 230, 181, .16); border-radius: 50%; box-shadow: 0 0 0 55px rgba(247, 230, 181, .035), 0 0 0 110px rgba(247, 230, 181, .025); }
 .nabat-transition__inner { position: relative; display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 9vw; }
 .nabat-transition__copy .eyebrow { color: var(--butter); }
-.nabat-transition__copy h2 { margin-top: 20px; font-family: var(--font-fredoka), sans-serif; font-size: clamp(47px, 6vw, 82px); font-weight: 400; letter-spacing: -.045em; line-height: .96; }
+.nabat-transition__copy h2 { margin-top: 20px; font-family: var(--display-nabat); font-size: clamp(47px, 6vw, 82px); font-weight: 400; letter-spacing: -.045em; line-height: .96; }
 .nabat-transition__copy h2 em { color: var(--butter); font-family: var(--font-lora), Georgia, serif; font-size: .72em; font-weight: 400; }
 .nabat-transition__copy > p { max-width: 400px; margin: 24px 0 27px; color: rgba(255, 252, 245, .77); font-size: 13px; line-height: 1.8; }
 .nabat-transition__image { aspect-ratio: .97; border-radius: 48% 48% 3px 3px; }
@@ -425,7 +492,9 @@ figure, blockquote, p { margin: 0; }
 .footer-brand__identity { display: flex; flex-direction: column; }
 .footer-brand__name { color: var(--ivory); font-family: var(--display-umm); font-size: clamp(36px, 4.6vw, 58px); letter-spacing: -.05em; line-height: .95; }
 .footer-brand__small { margin-bottom: 11px; color: #d2b6c4; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
-.footer-brand--nabat .footer-brand__name { font-family: var(--font-fredoka), sans-serif; font-size: 52px; font-weight: 500; }
+.footer-brand--nabat { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.footer-brand--nabat .footer-brand__logo { width: 112px; height: 112px; }
+.footer-brand__parent-line { color: var(--sprout-gold); font-family: var(--font-lora), Georgia, serif; font-size: 12px; font-weight: 600; letter-spacing: .08em; line-height: 1.5; }
 .site-footer__brand-column > p { max-width: 340px; margin-top: 22px; color: rgba(248, 243, 232, .7); font-size: 12px; line-height: 1.8; }
 .footer-socials { display: flex; flex-direction: column; gap: 8px; margin-top: 28px; }
 .footer-socials > span:first-child { color: var(--ivory); font-size: 10px; font-weight: 700; }
@@ -567,7 +636,7 @@ figure, blockquote, p { margin: 0; }
 .programme-page-nabat__image { height: 100%; min-height: 430px; }
 .programme-page-nabat__badge { position: absolute; right: 16px; bottom: 16px; display: grid; width: 88px; height: 88px; place-items: center; border-radius: 50%; color: var(--deep-blue); background: var(--sprout-gold); font-family: var(--label-nabat); font-size: 14px; text-align: center; }
 .programme-page-nabat__copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(35px, 5vw, 70px); color: var(--deep-blue); }
-.programme-page-nabat__copy h2 { margin-top: 18px; font-family: var(--label-nabat); font-size: clamp(45px, 5.3vw, 67px); font-weight: 500; letter-spacing: -.04em; line-height: .86; }
+.programme-page-nabat__copy h2 { margin-top: 18px; font-family: var(--display-nabat); font-size: clamp(45px, 5.3vw, 67px); font-weight: 500; letter-spacing: -.04em; line-height: .98; }
 .programme-page-nabat__copy h2 em { font-family: var(--display-nabat); font-size: .54em; font-weight: 400; }
 .programme-page-nabat__copy p { margin: 19px 0 23px; color: #505d7a; font-size: 12px; line-height: 1.8; }
 .programme-page-nabat .site-button--outline { color: var(--deep-blue); border-color: var(--deep-blue); }
@@ -690,7 +759,7 @@ figure, blockquote, p { margin: 0; }
 .islamic-foundations__item p { color: rgba(255,252,245,.66); font-size: 10px; line-height: 1.7; }
 .islamic-foundations__list .arrow-link { margin-top: 25px; color: var(--nabat-paper); border-color: var(--sprout-gold); }
 
-.age-journey { background: var(--butter); }
+.age-journey { background: var(--nabat-soft-butter); }
 .age-journey__header { display: grid; grid-template-columns: 1fr .75fr; gap: 40px; align-items: end; }
 .age-journey__header h2 { margin-top: 16px; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(43px, 5.5vw, 72px); font-weight: 400; letter-spacing: -.04em; line-height: .95; }
 .age-journey__header h2 em { color: var(--nabat-blue); }
@@ -718,7 +787,7 @@ figure, blockquote, p { margin: 0; }
 .nabat-why__item h3 { color: var(--deep-blue); font-family: var(--display-nabat); font-size: 21px; font-weight: 400; }
 .nabat-why__item p { max-width: 620px; margin-top: 7px; color: #5f687b; font-size: 10px; line-height: 1.7; }
 
-.day-journey { background: #edf0f5; }
+.day-journey { background: var(--nabat-blush); }
 .day-journey__header { display: grid; grid-template-columns: 1fr .75fr; gap: 40px; align-items: end; }
 .day-journey__header h2 { margin-top: 15px; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(42px, 5.3vw, 70px); font-weight: 400; letter-spacing: -.045em; }
 .day-journey__header > p { color: #586277; font-size: 10px; line-height: 1.8; }
@@ -738,7 +807,7 @@ figure, blockquote, p { margin: 0; }
 .nabat-prospectus-cta__inner > div > p { max-width: 420px; margin-top: 17px; color: rgba(255,252,245,.72); font-size: 11px; line-height: 1.75; }
 .nabat-prospectus-cta__inner > .site-button { flex: 0 0 auto; }
 .nabat-prospectus-cta__mark { position: absolute; right: 22%; bottom: -150px; color: rgba(255,255,255,.06); font-family: var(--label-nabat); font-size: 290px; line-height: 1; pointer-events: none; }
-.nabat-admissions-cta { position: relative; overflow: hidden; background: var(--butter); }
+.nabat-admissions-cta { position: relative; overflow: hidden; background: var(--nabat-soft-butter); }
 .nabat-admissions-cta__inner { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
 .nabat-admissions-cta .eyebrow { color: var(--nabat-blue); }
 .nabat-admissions-cta h2 { margin-top: 15px; color: var(--deep-blue); font-family: var(--display-nabat); font-size: clamp(48px, 6vw, 80px); font-weight: 400; letter-spacing: -.05em; line-height: .91; }
@@ -1167,7 +1236,7 @@ figure, blockquote, p { margin: 0; }
 }
 
 @media (max-width: 420px) {
-  :root { --gutter: 21px; }
+  :root { --gutter: 24px; }
   .umm-hero h1 { font-size: clamp(42px, 10.4vw, 48px); }
   .umm-hero__visual { min-height: 330px; }
   .umm-hero__footnote { font-size: 6px; letter-spacing: .08em; }
@@ -1224,6 +1293,81 @@ figure, blockquote, p { margin: 0; }
   .nabat-hero__image-note { font-size: 8px; }
   .nabat-intro__visual { width: 92%; }
   .nabat-philosophy__step h3 { font-size: 22px; }
+}
+
+.site-shell--nabat .site-button,
+.site-shell--nabat .header-cta { font-family: var(--label-nabat); font-size: 13px; font-weight: 500; border-radius: 999px; }
+.site-shell--nabat .enquiry-form__field label { font-family: var(--label-nabat); font-size: 13px; font-weight: 500; }
+.site-shell--nabat .text-link,
+.site-shell--nabat .arrow-link { font-family: var(--body-nabat); font-size: 13px; }
+.site-shell--nabat .nabat-hero__sprout i:nth-child(3) { background: var(--nabat-sage); }
+.nabat-intro__shape { background: var(--nabat-soft-blue); opacity: .42; }
+.nabat-hero__visual,
+.nabat-intro__image,
+.nabat-transition__image,
+.islamic-foundations__image,
+.curriculum-materials__photo,
+.islamic-curriculum-map__image,
+.prospectus-contents__image,
+.page-hero--nabat .page-hero__image { border-radius: 28px; }
+.nabat-hero__image-note { border-radius: var(--nabat-chip-radius); }
+.nabat-hero__stamp,
+.age-journey__dot,
+.day-journey__dot,
+.prospectus-contents__sticker { border-radius: 50%; }
+.nabat-fact dd { display: flex; flex-direction: column; gap: 4px; }
+.nabat-fact dd > span { color: var(--nabat-paper); font-family: var(--body-nabat); font-size: 18px; line-height: 1.2; }
+.nabat-fact dd small { color: var(--sprout-gold); font-family: var(--body-nabat); font-size: 12px; font-style: italic; }
+.site-shell--nabat .contact-form-panel,
+.site-shell--nabat .admissions-form-section__form,
+.site-shell--nabat .curriculum-explorer,
+.resource-card--blue { border-radius: 20px; overflow: hidden; }
+.site-shell--nabat .enquiry-form__field input,
+.site-shell--nabat .enquiry-form__field select,
+.site-shell--nabat .enquiry-form__field textarea { border-radius: 14px; }
+.site-shell--nabat .brand-mark--nabat .brand-mark__logo,
+.site-shell--nabat .footer-brand--nabat .footer-brand__logo { min-width: 96px; min-height: 96px; }
+.site-shell--nabat .brand-mark--nabat .brand-mark__logo { width: 96px; height: 96px; }
+.site-shell--nabat .brand-mark__parent-line { color: var(--deep-blue); font-family: var(--font-lora), Georgia, serif; font-size: 8px; font-weight: 600; letter-spacing: .08em; line-height: 1.3; white-space: nowrap; }
+.site-shell--nabat .footer-brand--nabat .footer-brand__parent-line { color: var(--sprout-gold); font-family: var(--font-lora), Georgia, serif; font-size: 12px; font-weight: 600; letter-spacing: .08em; line-height: 1.5; }
+.site-shell--nabat .footer-brand--nabat { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.site-shell--nabat .footer-brand--nabat .footer-brand__logo { width: 112px; height: 112px; }
+.site-shell--nabat .brand-mark:hover .brand-mark__logo,
+.site-shell--nabat .brand-mark:hover .brand-mark__logo img,
+.site-shell--nabat .footer-brand:hover .footer-brand__logo { transform: none; }
+
+@media (max-width: 1120px) {
+  .site-header[data-site-header="nabat"] .desktop-navigation,
+  .site-header[data-site-header="nabat"] .header-cta { display: none; }
+  .site-header[data-site-header="nabat"] .mobile-menu-toggle { display: inline-flex; }
+}
+
+@media (max-width: 1020px) {
+  .site-header[data-site-header="nabat"] { height: 112px; }
+  .site-header[data-site-header="nabat"].is-compact { height: 112px; }
+}
+
+@media (max-width: 760px) {
+  .site-header[data-site-header="nabat"] { height: 112px; }
+  .site-header[data-site-header="nabat"].is-compact { height: 112px; }
+  .site-shell--nabat .mobile-navigation { padding-top: 130px; }
+  .site-shell--nabat .brand-mark--nabat { min-width: 190px; align-items: flex-start; }
+  .site-shell--nabat .brand-mark__parent-line { font-size: 7px; }
+  .nabat-facts-band { padding-inline: var(--gutter); }
+  .nabat-facts-band__inner { grid-template-columns: 1fr 1fr; }
+  .nabat-fact { min-height: 92px; padding: 15px; }
+  .nabat-fact dd > span { font-size: 16px; }
+  .site-shell--nabat .nabat-hero h1 { font-size: clamp(42px, 10vw, 58px); }
+  .site-shell--nabat .nabat-hero__copy > p { font-size: 16px; }
+  .nabat-hero__visual,
+  .nabat-intro__image,
+  .nabat-transition__image,
+  .islamic-foundations__image,
+  .curriculum-materials__photo,
+  .islamic-curriculum-map__image,
+  .prospectus-contents__image,
+  .page-hero--nabat .page-hero__image { border-radius: 28px; }
+  .site-shell--nabat .footer-brand--nabat .footer-brand__logo { width: 96px; height: 96px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

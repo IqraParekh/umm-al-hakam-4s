@@ -5,6 +5,7 @@ import { ageStages, dayJourney, images, nabatApproachSteps, nabatCurriculum, nab
 import { ArrowLink, CopyText, Eyebrow, ImageReveal, SectionHeading, SiteButton } from "@/components/site/site-primitives"
 import { CurriculumExplorer } from "@/components/site/curriculum-explorer"
 import { StickyPrinciples } from "@/components/site/sticky-principles"
+import { NabatFactsBand } from "@/components/site/nabat-facts-band"
 
 export function NabatHomePage() {
   return (
@@ -12,7 +13,7 @@ export function NabatHomePage() {
       <section className="nabat-hero" aria-labelledby="nabat-hero-title">
         <div className="nabat-hero__copy container-shell" data-hero-copy>
           <span className="nabat-hero__sprout" aria-hidden="true"><i /><i /><i /></span>
-          <Eyebrow>A project of Markaz Umm al-Hakam · Ages 3–7</Eyebrow>
+          <Eyebrow>Rooted in Revelation, Growing in Knowledge</Eyebrow>
           <h1 id="nabat-hero-title"><span className="hero-line" data-hero-line>Where little</span><em className="hero-line" data-hero-line>hearts begin</em><span className="hero-line" data-hero-line>to learn.</span></h1>
           <p>A gentle beginning in knowledge, faith, curiosity and character.</p>
           <div className="hero-actions">
@@ -29,6 +30,8 @@ export function NabatHomePage() {
         </div>
         <a className="scroll-cue scroll-cue--nabat" data-hero-scroll href="#what-is-nabat"><span>Follow the journey</span><ArrowDown aria-hidden="true" size={14} /></a>
       </section>
+
+      <NabatFactsBand />
 
       <section className="nabat-intro section-padding" id="what-is-nabat">
         <div className="container-shell nabat-intro__grid">
@@ -99,7 +102,7 @@ export function NabatHomePage() {
       <section className="age-journey section-padding">
         <div className="container-shell age-journey__header" data-reveal>
           <div><Eyebrow>Who we teach</Eyebrow><h2>A journey from <em>3 to 7.</em></h2></div>
-          <p>Age-based stages offer a broad picture of early learning. They are not official class names or a promise of a fixed pathway.</p>
+          <p>Children are grouped by age and move through learning stations in small groups and one-to-one. The stages shown are a guide, not official class names or a fixed pathway.</p>
         </div>
         <div className="container-shell age-journey__track">
           <span className="age-journey__line" data-line-reveal aria-hidden="true" />
@@ -116,13 +119,13 @@ export function NabatHomePage() {
 
       <section className="nabat-why section-padding">
         <div className="container-shell nabat-why__intro" data-reveal>
-          <Eyebrow>Why Nabat</Eyebrow><h2>Strong roots.<br /><em>Gentle growth.</em></h2>
-          <p>Nabat brings together principles that support both learning and the learner—not a promise of outcomes, but a considered way to approach early education.</p>
+          <Eyebrow>Rooted in Revelation, Growing in Knowledge</Eyebrow><h2>Every child<br /><em>is an amanah.</em></h2>
+          <p>We write to families with care, sound sources and no pressure. We would be honoured to be part of your child&apos;s journey.</p>
         </div>
         <div className="container-shell nabat-why__list">
           {[
             { icon: Sparkles, title: "Strong academic foundations", text: "Language, mathematics and observation are approached with clarity and purposeful progression." },
-            { icon: BookOpen, title: "Islamic foundations", text: "The Qur'an, Prophetic teachings and Islamic tradition are part of the learning story." },
+            { icon: BookOpen, title: "Islamic foundations", text: "The Quran, Prophetic teachings and Islamic tradition are part of the learning story." },
             { icon: HandHeart, title: "Gentle learning", text: "Curiosity is welcomed and children are supported without undue pressure." },
             { icon: Flower2, title: "Character in the everyday", text: "Adab, relationships and teacher example are part of how a learning environment feels." },
           ].map(({ icon: Icon, title, text }, index) => (
@@ -136,7 +139,7 @@ export function NabatHomePage() {
       <section className="day-journey section-padding">
         <div className="container-shell day-journey__header" data-reveal>
           <div><Eyebrow>A day of learning</Eyebrow><h2>A rhythm, not a timetable.</h2></div>
-          <p>This is a conceptual learning journey—not an official daily schedule. Confirmed timings and routines will be shared by the institution.</p>
+          <p>This is a conceptual learning journey, not the official timetable. Published learning hours are Mon–Fri, 9:00 am to 1:00 pm.</p>
         </div>
         <div className="container-shell day-journey__timeline">
           {dayJourney.map((moment, index) => (
@@ -158,8 +161,8 @@ export function NabatHomePage() {
 
       <section className="nabat-admissions-cta section-padding">
         <div className="container-shell nabat-admissions-cta__inner" data-reveal>
-          <div><Eyebrow>For families</Eyebrow><h2>Ready to<br /><em>begin?</em></h2><p>Start with a question. We will share official admissions details when they are confirmed.</p></div>
-          <div className="nabat-admissions-cta__action"><SiteButton href="/nabat/admissions">Start an enquiry</SiteButton><Link className="text-link" href="/nabat/contact">Contact Nabat <ArrowUpRight aria-hidden="true" size={15} /></Link></div>
+          <div><Eyebrow>For families</Eyebrow><h2>A gentle start.<br /><em>A meaningful journey.</em></h2><p>We would be honoured to be part of your child&apos;s journey. Ask us a question at your own pace.</p></div>
+          <div className="nabat-admissions-cta__action"><a className="site-button site-button--primary" href="https://wa.me/923252793144" rel="noreferrer" target="_blank"><span>Message us on WhatsApp</span><ArrowUpRight aria-hidden="true" className="button-arrow" size={16} /></a><Link className="text-link" href="/nabat/admissions">Read admissions details <ArrowUpRight aria-hidden="true" size={15} /></Link></div>
           <Flower2 aria-hidden="true" className="nabat-admissions-cta__flower" size={188} strokeWidth={0.6} />
         </div>
       </section>
